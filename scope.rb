@@ -74,3 +74,4 @@ end
 
 dummy1 = DummyClass.new
 p dummy1.return_my_local_var
+
