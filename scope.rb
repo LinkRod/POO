@@ -75,3 +75,55 @@ end
 dummy1 = DummyClass.new
 p dummy1.return_my_local_var
 
+
+
+
+$global_var = "This is a global variable"
+CONSTANT = 3.1416
+def global_var
+  $global_var
+end
+def global_var=(new_var)
+  $global_var = new_var
+end
+def constant
+  CONSTANT
+end
+
+class DummyClass
+  @@class_variable = "This is a class variable"
+  def global_var
+    $global_var
+  end
+  def global_var=(new_var)
+    $global_var = new_var
+  end
+  def constant
+    CONSTANT
+  end
+  def classvariable
+    @@class_variable
+  end
+  def classvariable=(new_var)
+    @@class_variable = new_var
+  end
+  def initialize
+  end
+  def return_my_local_var
+  @instance_var
+  end
+  def return_my_local_var=(new_var)
+    @instance_var = new_var
+  end
+end
+dummy_1 = DummyClass.new
+dummy_2 = DummyClass.new
+
+puts dummy_1.classvariable="New value for the class variable"
+puts dummy_2.classvariable
+p constant
+p global_var
+p dummy_1.constant
+p dummy_1.global_var
+p dummy_1.global_var=("This is the NEW global variable")
+p dummy_1.global_var
