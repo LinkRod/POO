@@ -137,7 +137,7 @@ class People
     @nombre=nombre
   end
   def to_s
-    "mi nombre es #{@nombre}"
+    "Mi nombre es #{@nombre}"
   end
 end
 class Alumno < People
@@ -150,9 +150,9 @@ class Alumno < People
   end
 end
 
-persona = People.new("Juan")
+persona = People.new("Carlos")
 p persona.to_s
-alum = Alumno.new("Juan","Matematicas")
+alum = Alumno.new("Carlos","Geografia")
 p alum.to_s
 
 
