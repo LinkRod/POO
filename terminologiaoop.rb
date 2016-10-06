@@ -36,7 +36,7 @@ p car2.has_wheels? == true
 
 
 
-#Encapsular la funcion con los datos que esta modificando, controlando, así, los datos que no queremos que sean publicos. 
+# Encapsular la funcion con los datos que esta modificando, controlando, así, los datos que no queremos que sean publicos. 
 p "Encapsulado"
 class Person
   def initialize(name)
@@ -60,7 +60,7 @@ p person1.name == "Pablo"
 
 
 p "Duck Typing"
-#Los objetos son definidos por los metodos que pueden realizar y no por el nombre del objeto en si.
+# Los objetos son definidos por los metodos que pueden realizar y no por el nombre del objeto en si.
 class Duck  
   def quack  
     'Quack!'  
@@ -105,7 +105,7 @@ puts make_it_swim(Goose.new)
 
 
 p "Ley de Demeter"
-#Evitar el uso de metodos en objetos que son resultados de otros metodos.
+# Evitar el uso de metodos en objetos que son resultados de otros metodos.
 class Wallet
   attr_accessor :cash
   def withdraw(amount)
@@ -115,8 +115,8 @@ class Wallet
   end
 end
 class Customer
-   attr_accessor:wallet
-  # behavior delegation
+   attr_accessor :wallet
+  # Behavior delegation
   def pay(amount)
     @wallet.withdraw(amount)
   end
@@ -130,11 +130,10 @@ end
 
 
 p "Overriding methods"
-#Podemos elegir entre usar el metodo de la super clase, usar nuestro propio metodo en la sub clase, o complementar el metetodo del a super clase.
-
+# Se puede elegir entre usar el metodo de la super clase, usar nuestro propio metodo en la sub clase, o complementar el metodo de la super clase.
 class People
   def initialize(nombre)
-    @nombre=nombre
+    @nombre = nombre
   end
   def to_s
     "Mi nombre es #{@nombre}"
@@ -143,10 +142,10 @@ end
 class Alumno < People
   def initialize(nombre,materia)
     super(nombre)
-    @materia=materia
+    @materia = materia
   end
   def to_s
-    super + " y mi materia es #{@materia}"
+    super + " y tengo la materia de #{@materia}"
   end
 end
 
@@ -158,7 +157,7 @@ p alum.to_s
 
 
 p "Modulos"
-#Los modulos son grupos de metodos, clases y constantes que facilitan ciertas funciones
+# Los modulos son grupos de metodos, clases y constantes que facilitan ciertas funciones
 
 require 'Prime'
 p Prime.first(10) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
@@ -166,59 +165,60 @@ p Prime.first(10) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
 
 
 p "Scope"
-# Es elrango o alcance que tienen las variables en un programa determinado
-$variable_global="valiable_global"
+# Es elrango o alcance que tienen las variables en un programa
+$variable_global = "valiable_global"
 Constante="constante"
 class Pruebas
-  @@variable_de_clase="variable_de_clase"
+  @@variable_de_clase = "variable_de_clase"
   attr_accessor :varibale_instancia
   def initialize
-    @varibale_instancia="varibale_instancia"
+    @varibale_instancia = "varibale_instancia"
   end
 end
 
 
 
 p "Polymorphism"
-#Polymorphism es el concepto de modificar la herencia de una superclase directo en la subclase
+# Polymorphism es el proceso de modificar la herencia de una superclase directo en la subclase
 class People
   def initialize(nombre)
-    @nombre=nombre
+    @nombre = nombre
   end
   def to_s
-    "mi nombre es #{@nombre}"
+    "Mi nombre es #{@nombre}"
   end
   def self.breath?
     true
   end
 end
+
 class Alumno < People
   def initialize(nombre,materia)
     super(nombre)
-    @materia=materia
+    @materia = materia
   end
   def to_s
-    super + " y mi materia es #{@materia}"
+    super + " y tengo la materia de #{@materia}"
   end
 end
 
-persona = People.new("Juan")
+persona = People.new("Carlos")
 p persona.to_s
-alum = Alumno.new("Juan","Matematicas")
+alum = Alumno.new("Carlos","Geografia")
 p alum.to_s
 p People.breath?
 
 
 
 p "Separation of Concerns"
-#Es el concepto de dividir responsabilidades para que cada metodo sea responsable de una funcion solamente
-  def suma(calis)
+# Es el dividir responsabilidades para que cada metodo sea responsable de una sola función
+  def suma(array)
     suma = 0
-    calis.each{|cal| suma += cal}
+    array.each{|cal| suma += cal}
     suma
   end 
-def promedio(calis,num)
-    suma = suma(calis)
+def promedio(array,num)
+    suma = suma(array)
     promedio = suma/num
 end
 p promedio([5,6,7,8,7,6,5,9,10],9)
