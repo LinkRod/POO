@@ -12,6 +12,7 @@ class TwitterScrapper
     @target = ""
     @stats = []
     @name = ""
+    @joindate = ""
     @tweets = []
     @fechas = []
     @rtwfav = []
@@ -31,6 +32,10 @@ class TwitterScrapper
 
   def extract_place
     @place = @doc.search(".ProfileHeaderCard-locationText").inner_text
+  end
+
+   def extract_joindate
+    @joindate = @doc.search(".ProfileHeaderCard-joinDateText").inner_text
   end
 
   def extract_tweets
@@ -57,6 +62,7 @@ class TwitterScrapper
     print "Target: #{@target}\n"
     print "Biography: #{@bio}\n"
     print "Location: #{@place.strip}\n"
+    print "Join Date: #{@joindate}\n"
     print "--------------------------------------------------------------------------------------------------------\n"
     print "Stats:   Tweets: #{@stats[0]}       Following: #{@stats[1]}       Followers: #{@stats[2]}       Likes: #{@stats[3]}\n"
     print "--------------------------------------------------------------------------------------------------------\n"
@@ -75,6 +81,7 @@ twitter.extract_username
 twitter.extract_target
 twitter.extract_bio
 twitter.extract_place
+twitter.extract_joindate
 twitter.extract_stats
 twitter.extract_tweets
 twitter.to_s
