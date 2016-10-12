@@ -7,12 +7,12 @@ require 'open-uri'
 class TwitterScrapper
   def initialize(url)
     @doc = Nokogiri::HTML(File.open(url))
-    @place = ""
+    @name = ""
     @bio = ""
     @target = ""
-    @stats = []
-    @name = ""
+    @place = ""
     @joindate = ""
+    @stats = []
     @tweets = []
     @fechas = []
     @rtwfav = []
