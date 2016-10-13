@@ -48,18 +48,18 @@ end
 
 class Browser
   def run!
-    url2 = ""
+    url0 = ""
     print "Escribe una dirección URL: \n"
     @url1 = gets.chomp
     while @url1 != "S"
-      url2 = @url1
+      url0 = @url1
       pagina =  Page.new(@url1)
       pagina.to_s
       print "Escribe un URL nuevo o teclea 'S' para salir: \n"
       @url1 = gets.chomp
       for i in 0..10  
         if @url1 == $linkss[i].text
-          @url1 = url2+$linkss[i]["href"]
+          @url1 = url0+$linkss[i]["href"]
         end 
       end  
     end
