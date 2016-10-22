@@ -157,24 +157,35 @@ p swimmer.swim == "Swam 50 meters, time: 10 seconds, speed: 5.0 m/s"
 # Extra - Crea un metodo en team que regrese el promedio de velocidad del equipo.
 # Extra - Genera una tabla que muestre el coche y su nivel.
 #RaceCar class
+Lapdistance = 100
 class RaceCar
     attr_reader :name
 
-  def initialize(name)
+  def initialize(name, laptimes = [])
     @name = name
+    @laptimes = laptimes
   end
 
 
   #método para obtener velocidad promedio
   def average_speed
+    average = 0
 
   end
 
   #método que muestra nivel de cada race car
   def level
-
+    average = average_speed
+    if average < 5
+      "Principiante"
+    elsif average < 10
+      "Normal"
+    elsif average < 15
+      "Medio"
+    else
+      "Avanzado"
+    end
   end
-
 end
 
 #Team class
@@ -209,19 +220,23 @@ def
 end
 
 #método para mostrar nombre y nivel del race car
-def ()
+def cars(team)
     print "\n"
     print "|    Name        |    Nivel        |\n"
     print "---------------------------------------------------\n"
-    .each do ||
-    print "|     #{.name}     |   #{.level}   |\n"
+    team.each do |x|
+    print "|     #{x.name}     |   #{x.level}   |\n"
     end
     print "\n"
   end
 
 
 #instancias de RaceCar
-...
+car1 = RaceCar.new("Force", [2,4,6,8,10])
+car2 = RaceCar.new("Power", [])
+car3 = RaceCar.new("Passwater", [])
+car4 = RaceCar.new("Banjo", [])
+car5 = RaceCar.new("Duck", [])
 
 
 #tests--
