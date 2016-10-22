@@ -83,7 +83,6 @@ class Athlete
     speed = @total_time > 0 ? (@total_distance/@total_time.to_f).round(2) : 0
     speed
   end
-
 end
 
 #Runner class
