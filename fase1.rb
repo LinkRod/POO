@@ -40,15 +40,14 @@ end
   end
 
 #método para mostrar datos de tarjetas
-  def datos(cards)
-    print "\n"
-    print "|     name     |     number     |    expiration  |      cvc      |           status          |\n"
-    print "--------------------------------------------------------------------------------------------------------\n"
-    cards.each do |card|
-    print "|     #{card.name}     |   #{card.number}   |      #{card.expiration}     |      #{card.cvc}     | #{card.status} |\n"
-    end
-    print "\n"
+def datos(cards)
+  printf("|     %-9s|  %-10s|%12s  |%5s   |   %-27s|\n", "name", "number", "expiration", "cvc", "status")
+  printf "------------------------------------------------------------------------------------\n"
+  cards.each do |card|
+  printf("|  %-12s| %8s |    %-9s | %5s  |%28s  |\n", "#{card.name}", "#{card.number}", "#{card.expiration}", "#{card.cvc}", "#{card.status}")
   end
+  print "\n"
+end
 datos(cards)
 
 
@@ -233,10 +232,10 @@ end
 #método para mostrar nombre y nivel del race car
 def total_cars(team)
     print "\n"
-    print "|    Name       |    Nivel       |\n"
-    print "---------------------------------------------------\n"
+    printf("|   %-12s|   %-15s|\n", "Name", "Nivel")
+    print "------------------------------------\n"
     team.team.each do |x|
-    print "|    #{x.name}      |    #{x.level}   |\n"
+    printf("|   %-12s|   %-13s  |\n", "#{x.name}", "#{x.level}")
     end
     print "\n"
 end
