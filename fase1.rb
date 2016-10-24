@@ -170,17 +170,20 @@ class RaceCar
   #método para obtener velocidad promedio
   def average_speed
     average = 0
-
+    @laptimes.each do |time|
+      average += time
+    end
+    (Lapdistance/(average.to_f/5)).round(2)
   end
 
   #método que muestra nivel de cada race car
   def level
     average = average_speed
-    if average < 5
+    if average < 10
       "Principiante"
-    elsif average < 10
+    elsif average < 20
       "Normal"
-    elsif average < 15
+    elsif average < 30
       "Medio"
     else
       "Avanzado"
@@ -203,43 +206,52 @@ class Team
 
   #método para calcular promedio de velocidad del equipo
   def average_speed_of_team
-
+    if @team.empty?
+      0
+    else
+      average_team = [0,0]
+      @team.each do |x|
+      average_team[0] += x.average_speed
+      average_team[1] += 1
+      end
+    (average_team[0]/average_team[1]).round(2)
+    end
   end
 
 end
 
 #método para buscar race car
-def search_racecar(name,team)
-
-
+def search(name,team)
+  racecar = "#{name} is not a racer"
+  team.team.each do |x|
+  racecar = "#{name} is a racer" if x.name == name
+  end
+  racecar
 end
 
 #método para generar la tabla
-def
-  
-end
-
 #método para mostrar nombre y nivel del race car
-def cars(team)
+def total_cars(team)
     print "\n"
-    print "|    Name        |    Nivel        |\n"
+    print "|    Name       |    Nivel       |\n"
     print "---------------------------------------------------\n"
-    team.each do |x|
-    print "|     #{x.name}     |   #{x.level}   |\n"
+    team.team.each do |x|
+    print "|    #{x.name}      |    #{x.level}   |\n"
     end
     print "\n"
-  end
+end
 
 
 #instancias de RaceCar
 car1 = RaceCar.new("Force", [2,4,6,8,10])
-car2 = RaceCar.new("Power", [])
-car3 = RaceCar.new("Passwater", [])
-car4 = RaceCar.new("Banjo", [])
-car5 = RaceCar.new("Duck", [])
+car2 = RaceCar.new("Power", [3,7,11,15,19])
+car3 = RaceCar.new("Passwater", [5,7,3,6,1])
+car4 = RaceCar.new("Banjo", [6,6,18,6,21])
+car5 = RaceCar.new("Duck", [7,9,23,2,5])
 
 
 #tests--
+print "\n"
 p "car1: #{car1.average_speed} m/s"
 #ej. car1: 9.5 m/s
 p "car2: #{car2.average_speed} m/s"
@@ -250,8 +262,7 @@ p "car4: #{car4.average_speed} m/s"
 #ej. car4: 11.0 m/s
 p "car5: #{car5.average_speed} m/s"
 #ej. car5: 10.15 m/s
-p "car6: #{car6.average_speed} m/s"
-#ej. car6: 15.51 m/s
+print "\n"
 
 #create a team of cars --
 team1 = [car1, car2, car3, car4, car5]
@@ -265,3 +276,4 @@ p team_one.average_speed_of_team
 #ej. 10.66 
 
 #método para mostrar nombre y nivel del race car
+total_cars(team_one)
