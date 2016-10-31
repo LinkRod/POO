@@ -29,20 +29,6 @@ class RubyTodo
   end
 
   def delete(array, deleted)
-    # arr = []
-    # task_to_display = []
-    # array_delete = []
-    # CSV.foreach("todolist.csv") do |task|
-    #     arr << Task.new(task[0], task[1])
-    # end
-    # arr.each_with_index do |task, index|
-    #   if num.to_i != index + 1
-    #     task_to_display << task
-    #   #end 
-    #   elsif num.to_i == index + 1
-    #     array_delete << task.name
-    #    end 
-    # end
     CSV.open("todolist.csv", "wb") do |csv|
       array.each do |task|
         csv << [task.name, task.status]
@@ -108,9 +94,10 @@ class Todo
 
   def completecontrol(task_done)
     tasks_list = @model.index
-    # completed = tasks_list(task_done)
-    # completed_list = @model.complete(tasks_list, completed)
-    @view.complete(task_done)
+    tasks_list[task_done.to_i - 1].status = "true"
+    completed = tasks_list[task_done.to_i - 1]
+    completed_task = @model.complete(tasks_list, completed)
+    @view.complete(completed_task)
   end
 end
 
@@ -125,14 +112,13 @@ class View
 
   def vista(tasks)
     #generar la lista de tareas con su estatus de completado
-    # status = []
-    # tasks.each do |task|
-    #   task.done == "true" ? status << "[ X ]" : status << "[   ]"
     tasks.each_with_index do |task, index|
-      #p "#{index + 1}. #{task.name}"
       print "#{index + 1}. "#{task.name}""
-      #print "#{status} "
-      print "[   ] "
+      if task.status == "true"
+        print "[ X ] "
+      else 
+        print "[   ] "
+      end
       p "#{task.name}"
     end
   end
@@ -148,24 +134,14 @@ class View
   def complete(string)
     p "Completaste la tarea: '#{string}'."
   end
-
 end
-
-
-Golpear a Donald Trump,false
-Dominar el mundo,false
+      
+      
 Recorrer el mundo en bicicleta,false
 Correr por el parque,false
 Lanzarme en paracaidas,false
 Esquiar en la nieve,false
-Volar en helicoptero,false
-
-# 1. [ ] "Golpear a Donald Trump"
-# 2. [ ] "Convertirme en un Developer Rock Star"
-# 3. [ ] "Dominar el mundo"
-# 4. [ ] "Sacar la basura"
-# 5. [ ] "Recorrer el mundo en bicicleta"
-# 6. [ ] "Correr por el parque"
-# 7. [ ] "Manejar una grua"
-# 8. [ ] "Lanzarme en paracaidas"
-# 9. [ ] "Aprender a usar un cañon"
+Manejar una grua,false
+Golpear a Donald Trump,false
+Volar en un helicoptero,false
+Aprender a nadar,false
